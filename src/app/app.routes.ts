@@ -5,6 +5,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ObservableComponent } from './components/observable/observable.component';
+import { ProductWithApiComponent } from './components/product-with-api/product-with-api.component';
 
 export const routes: Routes = [
   { path: 'home', component: MainContentComponent },
@@ -14,5 +15,7 @@ export const routes: Routes = [
   { path: 'productlist', component: ProductListComponent },
   { path: 'categories', component: ParentComponent },
   { path: 'productdetails/:productID', component: ProductDetailsComponent },
+  { path: 'api', component: ProductWithApiComponent },
+
   { path: '**', component: NotFoundComponent, title: "Not Found" },
 ];
