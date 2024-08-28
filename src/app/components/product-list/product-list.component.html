@@ -1,0 +1,69 @@
+<div class="container">
+  <!-- <div class="row">
+    <label for="username" class="form-label">
+      username
+      <input type="text" id="username" name="name" class="form-control col-10" [(ngModel)]="clientName">
+    </label>
+    <h2>Hello {{clientName}}</h2>
+  </div> -->
+  <!-- <form class="form-control mb-2 col-6">
+    <label for="category" class="form-label">filter by Category</label>
+    <select class="form-select" name="category" id="category" aria-placeholder="filter"
+      [(ngModel)]="setSelectedCategory">
+      <option value="all">all</option>
+      <option value="1">Tables</option>
+      <option value="2">Chairs</option>
+      <option value="3">Tvs</option>
+    </select>
+  </form> -->
+  <div class="row">
+    @for (product of selectedCategory; track product.ID) {
+    <div class="col-4 mb-3 vh-50 border border-primary p-1 justify-content-center" adjustcard
+      [ngStyle]="{'background-color': (product.quantity<2)?'lightgray':'white'}">
+      @if(!product.IsPurshased) {
+      <img [src]="product.img" class="img-fluid rounded" alt="" srcset="">
+      }
+      @else{
+      <h2>Thanks for Buying from our Store {{clientName}}<br>
+        @if(product.datePurshased){<h3>{{product.datePurshased|date}}</h3><br>}
+
+        <button class="btn btn-danger" (click)="toggleImage(product.ID)">You're Welcome</button>
+      </h2>
+      }
+      <h4>{{product.name}}</h4>
+      <div><b>Price:</b> {{product.price|currency:"USD"}}</div>
+      @switch (product.discount) {
+      @case (2) {
+      <div><i>Price after discount: {{product.price - (product.price * 15 / 100)|currency:"USD"}}</i></div>
+      }
+      @case (1) {
+      <div><i>Price after discount: {{product.price - (product.price * 10 / 100)|currency:"USD"}}</i></div>
+      }
+      @case (0) {
+      <div><i>No discount</i></div>
+      }
+      }
+      @switch (product.quantity) {
+      @case(2) {
+      <div>last two items</div>
+      }
+      @case(1) {
+      <div>last Item</div>
+      }
+      @case (0) {
+      <div>out of Stock</div>
+      }
+      @default {
+      <div>{{product.quantity}} in Stock</div>
+      }
+      }
+      <div class="row justify-content-evenly">
+        <button class="btn btn-primary col-4" (click)="toggleImage(product.ID)" [disabled]="product.quantity==0"
+          (click)="addToCart(product)">Buy</button>
+        <a class="btn btn-primary col-4" [routerLink]="['/productdetails',product.ID]"><button>More Details</button></a>
+      </div>
+    </div>
+    }
+    
+  </div>
+</div>
