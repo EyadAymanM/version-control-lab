@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './eyad-component.component.scss'
 })
 export class EyadComponentComponent {
-
+  getAll(){
+    return "all"
+  }
 }
